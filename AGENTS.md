@@ -10,17 +10,14 @@
 
 ```bash
 pnpm install
-cp .env.example .env
-pnpm dev          # 默认 http://127.0.0.1:5180
-pnpm build        # 产物 dist/，base /v2/
+cp .env.example .env.development.local   # 或 .env
+pnpm dev:h5       # 与 uni-app 仓 dev:h5 同名；默认 http://127.0.0.1:5180
+pnpm build:h5     # 产物 dist/，base /v2/
+pnpm preview:h5   # 预览构建产物（联调优先 dev:h5）
 pnpm docs:pages   # 从 registry 生成 doc/pages/*/*.html
 ```
 
-小程序联调：在 `mfm-uniapp-vue3` 的 `env/.env.development.local` 设置：
-
-```bash
-VITE_MFM_H5_ORIGIN=http://<局域网IP>:5180
-```
+小程序联调：`web-view` URL 由 **`mfm-api`** `page_config.props.webviewSrc` 下发。本地在 API `.env` 设 `MFM_API_H5_PUBLIC_ORIGIN=http://<局域网IP>:5180`（与 `pnpm dev:h5` 端口一致），seed 后重启 API。
 
 ---
 
@@ -49,20 +46,26 @@ mfm-h5/
 
 ---
 
-## §2 架构要点
+## §2 架构要点（两层边界）
+
+| 层 | 谁 | 配置 / 导航 | 发版 |
+|----|-----|-------------|------|
+| **壳** | `mfm-uniapp-vue3` 仅 ``base-h5-webview-page`` + ``page-key`` | ``GET /config/page`` → ``props.webviewSrc``（**真值**）；改 H5 入口 URL **不需**发小程序 |
+| **页** | 本仓库 SPA | ``rank-routes.ts`` 只做 **Vue Router 路径注册**；站内 ``router.push``、RankHub 网格等 **可在 H5 内迭代** | 部署 ``dist/`` 即可 |
 
 | 项 | 说明 |
 |----|------|
-| 技术栈 | **Vue 3 + Vue Router + Vite**（非 uni-app 运行时；房小团 H5 为 uni-app 编译产物，我们对齐 URL 与桥，不复制其构建链） |
-| 公开路径 | ``{origin}/v2/pages/<deployPath>``，与 FXT ``fxt-mobile.huanjutang.com/v2/pages/…`` 一致 |
+| 技术栈 | **Vue 3 + Vue Router + Vite**（非 uni-app 运行时；对齐 FXT ``/v2/pages/…`` URL） |
+| 公开路径 | ``{origin}/v2/pages/<deployPath>``，须与 **mfm-api** ``page_config.props.webviewSrc`` 路径一致 |
 | 小程序桥 | ``uni.webview.1.5.4.js``；返回优先 ``uni.navigateBack()`` |
-| API | 开发：Vite proxy ``/api`` → ``VITE_API_BASE_URL``；生产：构建时 ``VITE_API_BASE_URL`` 或同源反代 |
+| 业务 API | 子榜页内 ``fetch`` mfm-api（如 ``GET /data/sell-rank``）；**不是** ``/config/page`` |
 
 ```text
-小程序 web-view 壳 (mfm-uniapp-vue3)
-    → GET {VITE_MFM_H5_ORIGIN}/v2/pages/data/sell-rank
-        → 本仓库静态资源 + Vue SPA
-            → fetch mfm-api GET /data/sell-rank
+小程序壳 page-key=data-sell-rank
+  → page_config.webviewSrc = {H5}/v2/pages/data/sell-rank   ← 运营可改、免小程序发版
+      → mfm-h5 匹配路由 → SellRank.vue
+          → GET /data/sell-rank
+榜单中心 H5 内 router.push('/pages/…')  ← 仅 SPA 内跳转，随 H5 部署更新
 ```
 
 ---
@@ -71,9 +74,9 @@ mfm-h5/
 
 ### 房产榜单（`rank`）
 
-- 路由真值：`src/config/rank-routes.ts`
+- **壳 URL 真值**：mfm-api ``page_config``（各 ``*-rank`` 的 ``webviewSrc``）；小程序已全用 ``page-key``
+- **H5 路由表**：`src/config/rank-routes.ts`（与 ``webviewSrc`` 路径对齐，供 Vite/站内跳转）
 - 页面文档：`doc/pages/rank/*.html`（由 ``registry.json`` 生成）
-- 小程序 ``deployPath`` 对照：`../mfm-uniapp-vue3/src/subpackages/tools/config/property-rank-h5.ts`
 
 ---
 
@@ -90,9 +93,11 @@ mfm-h5/
 
 ## §5 不要做的事
 
-- 在 `mfm-uniapp-vue3` 的 `subpackages/**/pages/h5/` 新增榜单真值页。
+- 在 `mfm-uniapp-vue3` 壳页写死 H5 完整 URL（须 ``page-key`` + ``page_config``）。
+- 在 `mfm-uniapp-vue3` 实现榜单业务 UI（真值在本仓库 + 业务 API）。
+- 把 ``rank-routes.ts`` 当成运营配置源同步给小程序（小程序只认 ``webviewSrc``）。
 - 引入 uni-app / uView 运行时（保持轻量 SPA）。
-- 修改 ``/v2/`` base 或 ``deployPath`` 而不同步小程序 ``property-rank-h5.ts`` 与 ``doc/pages/rank/registry.json``。
+- 修改 ``/v2/`` 路径而不同步 **``page_config.webviewSrc``**、``rank-routes.ts``、``doc/pages/rank/registry.json``。
 
 ---
 

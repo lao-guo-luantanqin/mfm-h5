@@ -1,7 +1,7 @@
 {
   "module": "rank",
   "title": "房产榜单",
-  "description": "榜单中心与子榜；URL 与房小团 /v2/pages 对齐，小程序仅 web-view 壳。",
+  "description": "榜单中心与子榜；URL 与房小团 /v2/pages 对齐，小程序 web-view 壳加载。",
   "pages": [
     {
       "id": "hub",
@@ -82,7 +82,7 @@
     },
     {
       "id": "aggregation-rank",
-      "title": "二手房排行榜",
+      "title": "二手房行情榜单",
       "deployPath": "ershou/aggregation-rank",
       "routerPath": "/pages/ershou/aggregation-rank",
       "view": "src/views/Placeholder.vue",
@@ -104,7 +104,7 @@
     },
     {
       "id": "auction-rank",
-      "title": "土拍榜单",
+      "title": "土拍价格榜",
       "deployPath": "auction/auction-rank",
       "routerPath": "/pages/auction/auction-rank",
       "view": "src/views/Placeholder.vue",

@@ -16,16 +16,16 @@ export const RANK_ROUTES: RankRouteDef[] = [
   { id: "house-type-popularity", title: "户型人气榜", path: "/pages/house-rank-list/index" },
   { id: "house-ladder", title: "户型天梯榜", path: "/pages/house/ladder/index" },
   { id: "house-search-rank", title: "二手房源找房榜", path: "/pages/house-list/house-search-rank" },
-  { id: "aggregation-rank", title: "二手房排行榜", path: "/pages/ershou/aggregation-rank" },
+  { id: "aggregation-rank", title: "二手房行情榜单", path: "/pages/ershou/aggregation-rank" },
   { id: "ershou-ranking", title: "热卖二手小区", path: "/pages/ershou/ranking" },
-  { id: "auction-rank", title: "土拍榜单", path: "/pages/auction/auction-rank" },
+  { id: "auction-rank", title: "土拍价格榜", path: "/pages/auction/auction-rank" },
 ]
 
 export function rankRouteById(id: string): RankRouteDef | undefined {
   return RANK_ROUTES.find((r) => r.id === id)
 }
 
-/** 供小程序 ``web-view`` 拼 URL：``{origin}/v2/pages/tools/app-list/rank`` */
+/** 供小程序 ``web-view`` 拼 URL：``{origin}/v2/pages/<deployPath>`` */
 export function deployPathFromRoute(route: RankRouteDef): string {
   return route.path.replace(/^\/pages\//, "")
 }

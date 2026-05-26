@@ -1,9 +1,5 @@
 <template>
   <div class="project-rank">
-    <header class="project-rank__nav">
-      <button type="button" class="project-rank__back" @click="onBack">‹</button>
-      <h1 class="project-rank__title">楼盘排行榜</h1>
-    </header>
     <ul class="project-rank__list">
       <li v-for="item in items" :key="item.id" class="project-rank__card">
         <span class="project-rank__badge">{{ item.rankLabel }}</span>

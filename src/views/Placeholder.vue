@@ -1,9 +1,5 @@
 <template>
   <div class="placeholder">
-    <header class="placeholder__nav">
-      <button type="button" class="placeholder__back" @click="onBack">‹</button>
-      <h1 class="placeholder__title">{{ title }}</h1>
-    </header>
     <p class="placeholder__hint">页面壳已就绪，业务数据与交互待接 mfm-api。</p>
     <router-link class="placeholder__link" to="/pages/tools/app-list/rank">返回榜单中心</router-link>
   </div>
