@@ -33,10 +33,13 @@ mfm-h5/
 │       ├── rank.html       # 模块索引（生成）
 │       └── rank/           # 各页契约（registry.json + *.html）
 ├── src/
-│   ├── config/             # 路由表（按模块扩展）
-│   ├── views/              # 页面 SFC
-│   ├── router/
-│   └── api/
+│   ├── api/                # 业务接口封装（仅路径 + apiGet，无字段映射）
+│   ├── config/             # 静态资源 URL、Tab 常量等
+│   ├── types/              # 与 mfm-api OutBase JSON（camelCase）对齐
+│   ├── utils/              # HTTP 客户端（``request.ts``）
+│   ├── views/              # 页面 SFC：拉数、状态、交互
+│   ├── components/         # 展示组件（props 直接用 API 类型）
+│   └── router/
 ├── scripts/gen-page-docs.mjs
 ├── vite.config.ts          # base: /v2/
 └── index.html              # uni.webview + jweixin
@@ -58,7 +61,7 @@ mfm-h5/
 | 技术栈 | **Vue 3 + Vue Router + Vite**（非 uni-app 运行时；对齐 FXT ``/v2/pages/…`` URL） |
 | 公开路径 | ``{origin}/v2/pages/<deployPath>``，须与 **mfm-api** ``page_config.props.webviewSrc`` 路径一致 |
 | 小程序桥 | ``uni.webview.1.5.4.js``；返回优先 ``uni.navigateBack()`` |
-| 业务 API | 子榜页内 ``fetch`` mfm-api（如 ``GET /data/sell-rank``）；**不是** ``/config/page`` |
+| 业务 API | 页面 ``import`` ``api/*`` 请求 mfm-api；类型见 ``types/``，与后端 JSON 一致（**不做** api 层字段映射） |
 
 ```text
 小程序壳 page-key=data-sell-rank

@@ -1,4 +1,4 @@
-import { apiGet } from "@/api/request"
+import { apiGet } from "@/utils/request"
 import type { SellRankData, SellRankMetric, SellRankPeriod } from "@/types/sell-rank"
 
 export function fetchSellRank(query: {

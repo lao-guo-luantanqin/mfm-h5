@@ -32,86 +32,86 @@
       "routerPath": "/pages/project-list/project-rank",
       "view": "src/views/ProjectRank.vue",
       "mpShellPath": "/subpackages/project-list/pages/project-rank/index",
-      "api": "待定",
-      "status": "stub",
-      "notes": "当前演示卡片；南京原站部分城市为原生页"
+      "api": "GET /data/project-rank",
+      "status": "done",
+      "notes": "对齐房小团 project-list/project-rank 六 Tab 楼盘榜"
     },
     {
       "id": "new-house-price",
       "title": "新房价格风云榜",
       "deployPath": "price/new-house",
       "routerPath": "/pages/price/new-house",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/NewHousePrice.vue",
       "mpShellPath": "/subpackages/project-list/pages/new-house-rank/index",
-      "api": "待定",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/new-house-price-rank",
+      "status": "done",
+      "notes": "对齐房小团 price/new-house 条形竞速榜"
     },
     {
       "id": "house-type-popularity",
       "title": "户型人气榜",
       "deployPath": "house-rank-list/index",
       "routerPath": "/pages/house-rank-list/index",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/HouseTypePopularity.vue",
       "mpShellPath": "/subpackages/tools/pages/rank/house-type-popularity",
-      "api": "待定",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/house-type-popularity-rank",
+      "status": "done",
+      "notes": "对齐房小团 house-rank-list 户型人气榜"
     },
     {
       "id": "house-ladder",
       "title": "户型天梯榜",
       "deployPath": "house/ladder/index",
       "routerPath": "/pages/house/ladder/index",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/HouseLadder.vue",
       "mpShellPath": "/subpackages/tools/pages/rank/house-ladder",
-      "api": "待定",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/house-ladder-rank",
+      "status": "done",
+      "notes": "对齐房小团 house/ladder 梯队卡片榜"
     },
     {
       "id": "house-search-rank",
       "title": "二手房源找房榜",
       "deployPath": "house-list/house-search-rank",
       "routerPath": "/pages/house-list/house-search-rank",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/HouseSearchRank.vue",
       "mpShellPath": "/subpackages/house-list/pages/house-search-rank",
-      "api": "待定",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/house-search-rank + /tabs",
+      "status": "done",
+      "notes": "对齐房小团 house-list/house-search-rank 找房榜"
     },
     {
       "id": "aggregation-rank",
       "title": "二手房行情榜单",
       "deployPath": "ershou/aggregation-rank",
       "routerPath": "/pages/ershou/aggregation-rank",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/AggregationRank.vue",
       "mpShellPath": "/subpackages/data/pages/aggregation-rank",
-      "api": "待定",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/ershou-aggregation-rank",
+      "status": "done",
+      "notes": "对齐房小团 ershou/aggregation-rank 行情双列预览榜"
     },
     {
       "id": "ershou-ranking",
       "title": "热卖二手小区",
       "deployPath": "ershou/ranking",
       "routerPath": "/pages/ershou/ranking",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/ErshouRanking.vue",
       "mpShellPath": "/subpackages/ershou/pages/ranking",
-      "api": "待定",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/ershou-ranking + /tabs",
+      "status": "done",
+      "notes": "对齐房小团 ershou/ranking 热卖二手小区榜"
     },
     {
       "id": "auction-rank",
       "title": "土拍价格榜",
       "deployPath": "auction/auction-rank",
       "routerPath": "/pages/auction/auction-rank",
-      "view": "src/views/Placeholder.vue",
+      "view": "src/views/AuctionRank.vue",
       "mpShellPath": "/subpackages/auction/pages/auction-rank",
-      "api": "GET /data/land-auctions（候选）",
-      "status": "placeholder",
-      "notes": "占位壳"
+      "api": "GET /data/auction-rank",
+      "status": "done",
+      "notes": "对齐房小团 auction/auction-rank 土拍成交价格榜"
     }
   ]
 }

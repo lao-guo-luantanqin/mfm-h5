@@ -7,11 +7,15 @@ export interface ApiEnvelope<T> {
   data?: T
 }
 
-export async function apiGet<T>(path: string, query?: Record<string, string | number | undefined>): Promise<T> {
+export async function apiGet<T>(
+  path: string,
+  query?: Record<string, string | number | boolean | undefined>,
+): Promise<T> {
   const q = new URLSearchParams()
   if (query) {
     Object.entries(query).forEach(([k, v]) => {
-      if (v !== undefined && v !== null && String(v) !== "") q.set(k, String(v))
+      if (v === undefined || v === null || String(v) === "") return
+      q.set(k, typeof v === "boolean" ? (v ? "true" : "false") : String(v))
     })
   }
   const p = path.startsWith("/") ? path : `/${path}`

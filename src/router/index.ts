@@ -5,13 +5,13 @@ const routeComponents: Record<string, () => Promise<unknown>> = {
   hub: () => import("@/views/RankHub.vue"),
   "sell-rank": () => import("@/views/SellRank.vue"),
   "project-rank": () => import("@/views/ProjectRank.vue"),
-  "new-house-price": () => import("@/views/Placeholder.vue"),
-  "house-type-popularity": () => import("@/views/Placeholder.vue"),
-  "house-ladder": () => import("@/views/Placeholder.vue"),
-  "house-search-rank": () => import("@/views/Placeholder.vue"),
-  "aggregation-rank": () => import("@/views/Placeholder.vue"),
-  "ershou-ranking": () => import("@/views/Placeholder.vue"),
-  "auction-rank": () => import("@/views/Placeholder.vue"),
+  "new-house-price": () => import("@/views/NewHousePrice.vue"),
+  "house-type-popularity": () => import("@/views/HouseTypePopularity.vue"),
+  "house-ladder": () => import("@/views/HouseLadder.vue"),
+  "house-search-rank": () => import("@/views/HouseSearchRank.vue"),
+  "aggregation-rank": () => import("@/views/AggregationRank.vue"),
+  "ershou-ranking": () => import("@/views/ErshouRanking.vue"),
+  "auction-rank": () => import("@/views/AuctionRank.vue"),
 }
 
 const routes = RANK_ROUTES.map((r) => ({

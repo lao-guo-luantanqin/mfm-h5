@@ -1,5 +1,7 @@
+/** 对齐 ``GET /data/sell-rank`` JSON */
+
 export type SellRankRow = {
-  _id: string
+  _id?: string
   rank?: number
   projectName?: string
   districtName?: string
@@ -20,7 +22,13 @@ export type SellRankData = {
   year?: number
   month?: number
   metric?: SellRankMetric
+  district?: string
+  cityName?: string
   updatedAt?: string
   rows?: SellRankRow[]
+  pageNo?: number
+  pageSize?: number
+  total?: number
+  totalPages?: number
   disclaimer?: string
 }

@@ -6,17 +6,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
-import { useRoute, useRouter } from "vue-router"
+import { computed, onMounted } from "vue"
+import { useRoute } from "vue-router"
 
 const route = useRoute()
-const router = useRouter()
 
 const title = computed(() => String(route.meta.title ?? "榜单"))
 
-function onBack() {
-  router.back()
-}
+onMounted(() => {
+  document.title = title.value
+})
 </script>
 
 <style scoped>
