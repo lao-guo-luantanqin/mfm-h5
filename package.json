@@ -1,0 +1,26 @@
+{
+  "name": "mfm-h5",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "济南买房么 · 独立 H5 站点（多页面模块，供小程序 web-view 等加载）",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "docs:pages": "node scripts/gen-page-docs.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.5",
+    "vue-tsc": "^2.2.0"
+  }
+}

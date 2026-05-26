@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>架构与部署 · mfm-h5</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div class="portal">
+      <a class="back-home" href="./index.html">← 文档门户</a>
+      <header class="hero">
+        <h1>架构与部署</h1>
+        <p class="lead">mfm-h5 是面向多业务 H5 页面的独立前端工程，当前首批落地「房产榜单」模块。</p>
+      </header>
+
+      <section class="content-panel">
+        <h2>三端分工</h2>
+        <div class="flow-block">mfm-uniapp-vue3（小程序）
+  web-view 壳页 → VITE_MFM_H5_ORIGIN/v2/pages/&lt;deployPath&gt;
+
+mfm-h5（本仓库）
+  Vue SPA · base /v2/ · history 路由
+
+mfm-api
+  REST · 如 GET /data/sell-rank</div>
+      </section>
+
+      <section class="content-panel">
+        <h2>与房小团 FXT 的关系</h2>
+        <p>
+          原站 H5 为 <strong>uni-app 编译的静态包</strong>（Vue chunk + <code>uni.webview</code>）。本仓库选用
+          <strong>Vite + Vue 3</strong> 以降低维护成本，但对齐公开 URL 与小程序桥接行为。
+        </p>
+      </section>
+
+      <section class="content-panel">
+        <h2>构建与 Nginx</h2>
+        <ul>
+          <li><code>pnpm build</code> → <code>dist/</code></li>
+          <li><code>vite.config.ts</code> 中 <code>base: '/v2/'</code></li>
+          <li>生产示例：<code>https://h5.example.com/v2/pages/data/sell-rank</code></li>
+          <li>微信「业务域名」需配置 H5 根域名</li>
+        </ul>
+      </section>
+
+      <section class="content-panel">
+        <h2>环境变量</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>变量</th><th>用途</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>VITE_DEV_PORT</code></td><td>本地 dev 端口，默认 5180</td></tr>
+              <tr><td><code>VITE_API_BASE_URL</code></td><td>FastAPI 根；dev 经 proxy <code>/api</code></td></tr>
+              <tr><td><code>VITE_DEFAULT_CITY_ID</code></td><td>默认城市 ID（如 370100）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">小程序侧使用 <code>VITE_MFM_H5_ORIGIN</code>（在 mfm-uniapp-vue3 配置）。</p>
+      </section>
+    </div>
+  </body>
+</html>

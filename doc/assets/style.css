@@ -1,0 +1,209 @@
+/* mfm-h5 · doc 套件公共样式 · 无外部依赖（与 mfm-api doc 对齐） */
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7deea;
+  --paper: #f7f9fc;
+  --panel: #ffffff;
+  --navy: #10233f;
+  --blue: #2563eb;
+  --green: #138a5b;
+  --amber: #b45309;
+  --red: #b42318;
+  --shadow: 0 18px 50px rgba(16, 35, 63, 0.1);
+  --code-bg: #eef2f7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(16, 35, 63, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(16, 35, 63, 0.055) 1px, transparent 1px),
+    var(--paper);
+  background-size: 28px 28px;
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  font-family: ui-monospace, Menlo, monospace;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(26px, 4vw, 36px);
+  color: var(--navy);
+}
+
+h2 {
+  margin: 32px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 22px;
+  color: var(--navy);
+}
+
+.lead,
+.muted {
+  color: var(--muted);
+}
+
+.portal {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px clamp(16px, 4vw, 48px) 64px;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.breadcrumb-sep {
+  opacity: 0.45;
+}
+
+.breadcrumb-current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.back-home {
+  display: inline-flex;
+  margin-bottom: 16px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  font-size: 13px;
+}
+
+.hero,
+.content-panel {
+  margin-bottom: 20px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.callout {
+  margin: 18px 0;
+  padding: 14px 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+}
+
+.callout--info {
+  border-left: 4px solid var(--blue);
+  background: #eff6ff;
+}
+
+.callout--ok {
+  border-left: 4px solid var(--green);
+  background: #ecfdf5;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+th {
+  background: #f8fafc;
+  color: var(--navy);
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 4px 18px rgba(16, 35, 63, 0.06);
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tag--ok {
+  color: #14532d;
+  background: #dcfce7;
+}
+
+.tag--warn {
+  color: #78350f;
+  background: #fef3c7;
+}
+
+.tag--muted {
+  color: #475569;
+  background: #f1f5f9;
+}
+
+.flow-block {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}

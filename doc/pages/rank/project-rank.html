@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>楼盘排行榜 · mfm-h5 · 房产榜单</title>
+  <link rel="stylesheet" href="../../assets/style.css" />
+</head>
+<body>
+  <div class="portal">
+    <a class="back-home" href="../../index.html">← 文档门户</a>
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="../../index.html">mfm-h5</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../rank.html">房产榜单</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">楼盘排行榜</span>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow muted">房产榜单 · 页面契约</div>
+      <h1>楼盘排行榜</h1>
+      <p class="lead">当前演示卡片；南京原站部分城市为原生页</p>
+      <span class="tag tag--warn">演示/壳</span>
+    </header>
+
+    <section class="content-panel">
+      <h2>URL 与路由</h2>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th>页面 ID</th><td><code>project-rank</code></td></tr>
+            <tr><th>部署路径 deployPath</th><td><code>project-list/project-rank</code></td></tr>
+            <tr><th>Vue Router</th><td><code>/pages/project-list/project-rank</code></td></tr>
+            <tr><th>本地开发 URL</th><td><a href="http://127.0.0.1:5180/v2/pages/project-list/project-rank" target="_blank" rel="noopener"><code>http://127.0.0.1:5180/v2/pages/project-list/project-rank</code></a></td></tr>
+            <tr><th>生产 URL 模板</th><td><code>{H5_ORIGIN}/v2/pages/project-list/project-rank</code></td></tr>
+            <tr><th>SFC 实现</th><td><code>src/views/ProjectRank.vue</code></td></tr>
+            <tr><th>小程序 web-view 壳</th><td><code>/subpackages/project-list/pages/project-rank/index</code></td></tr>
+            <tr><th>后端 API</th><td><code>待定</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info">
+        <strong>小程序联调：</strong>在 <code>mfm-uniapp-vue3</code> 配置 <code>VITE_MFM_H5_ORIGIN</code> 指向本站点根（勿尾随 <code>/</code>）。
+        壳页通过 <code>property-rank-h5.ts</code> 的 <code>deployPath</code> 拼 <code>/v2/pages/…</code>。
+      </div>
+    </section>
+
+    <section class="content-panel">
+      <h2>参考</h2>
+      <ul>
+        <li>路由真值：<code>src/config/rank-routes.ts</code></li>
+        <li>模块索引：<a href="../rank.html">房产榜单 模块</a></li>
+        <li>架构：<a href="../../architecture.html">H5 架构说明</a></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

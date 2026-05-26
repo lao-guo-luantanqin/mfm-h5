@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent 文档门户 · mfm-h5</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div class="portal">
+      <header class="hero">
+        <div class="eyebrow muted">doc · 独立 H5 · 2026-05-26</div>
+        <h1>mfm-h5 · 文档套件</h1>
+        <p class="lead">
+          与 <code>mfm-uniapp-vue3</code> 分仓部署的 H5 站点。页面按模块扩展；运行时入口 <code>AGENTS.md</code>，契约真值见各
+          <code>doc/pages/&lt;module&gt;/&lt;id&gt;.html</code>。
+        </p>
+        <div class="callout callout--info">
+          <strong>URL 形态：</strong><code>{origin}/v2/pages/&lt;deployPath&gt;</code>，与房小团 FXT 对齐。小程序仅
+          <code>web-view</code> 壳，配置 <code>VITE_MFM_H5_ORIGIN</code>。
+        </div>
+        <div class="callout callout--ok">
+          <strong>技术栈：</strong>Vue 3 + Vue Router + Vite（非 uni-app 运行时）。<code>index.html</code> 含
+          <code>uni.webview.1.5.4.js</code>。
+        </div>
+      </header>
+
+      <h2>页面模块</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="tag tag--ok">rank</span>
+          <h3><a href="./pages/rank.html">房产榜单</a></h3>
+          <p>榜单中心、网签榜、楼盘榜等 10 页；已生成单页 HTML 契约。</p>
+          <p><a href="./pages/rank.html">模块索引 →</a></p>
+        </article>
+      </div>
+
+      <h2>核心文档</h2>
+      <div class="grid">
+        <article class="card">
+          <h3><a href="./architecture.html">架构与部署</a></h3>
+          <p>与小程序/后端边界、Nginx base、环境变量、联调步骤。</p>
+        </article>
+        <article class="card">
+          <h3><a href="../AGENTS.md">AGENTS.md</a></h3>
+          <p>Agent 协作入口（Markdown，仓库根目录）。</p>
+        </article>
+      </div>
+
+      <p class="muted">生成单页文档：<code>pnpm docs:pages</code>（读取 <code>doc/pages/*/registry.json</code>）。</p>
+    </div>
+  </body>
+</html>
