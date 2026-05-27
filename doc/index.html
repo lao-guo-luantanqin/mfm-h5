@@ -47,6 +47,17 @@
         </article>
       </div>
 
+      <details id="doc-structure">
+        <summary>文档结构（Harness）</summary>
+        <div class="details-body">
+          <p>本仓 <code>doc/pages/&lt;module&gt;/</code> 为 <code>pnpm docs:pages</code> 生成的单页契约；壳 URL 真值在 mfm-api <code>page_config.webviewSrc</code>。</p>
+          <pre><code>doc/
+├── index.html · architecture.html
+├── pages/rank.html · pages/rank/*.html
+└── assets/</code></pre>
+        </div>
+      </details>
+
       <p class="muted">生成单页文档：<code>pnpm docs:pages</code>（读取 <code>doc/pages/*/registry.json</code>）。</p>
     </div>
   </body>
