@@ -207,3 +207,119 @@ th {
   font-size: 12px;
   letter-spacing: 0.02em;
 }
+
+/* shell · 与 mfm-admin doc 对齐 */
+:root {
+  --sidebar-w: 260px;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  min-height: 100vh;
+  min-width: 720px;
+}
+
+.side {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 24px 18px;
+  color: #e8eef8;
+  background: var(--navy);
+  overflow-y: auto;
+}
+
+.brand .eyebrow {
+  color: #9fb4d5;
+  font-size: 11px;
+}
+
+.brand h2 {
+  margin: 6px 0 8px;
+  padding: 0;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+}
+
+.brand p {
+  margin: 0;
+  color: #c4d1e4;
+  font-size: 12px;
+}
+
+.nav {
+  display: grid;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.nav-label {
+  margin: 16px 0 6px;
+  color: #9fb4d5;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.nav a {
+  display: block;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  color: #dce7f7;
+  font-size: 12px;
+}
+
+.nav a.is-active {
+  color: #fff;
+  font-weight: 700;
+  background: rgba(37, 99, 235, 0.35);
+}
+
+.side-note {
+  margin-top: 18px;
+  padding: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  color: #bed0e9;
+  font-size: 11px;
+}
+
+main {
+  min-width: 0;
+  padding: 24px clamp(16px, 4vw, 48px) 56px;
+}
+
+.panel {
+  margin-bottom: 20px;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.section-anchor {
+  scroll-margin-top: 24px;
+}
+
+.diagram {
+  margin: 16px 0 24px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fafbfd;
+  overflow-x: auto;
+}
+
+.diagram .mermaid {
+  margin: 0;
+  font-size: 13px;
+}
+
+.section-lead {
+  color: var(--muted);
+  margin: 0 0 16px;
+  font-size: 14px;
+}

@@ -1,5 +1,5 @@
 /**
- * 从 doc/pages/<module>/registry.json 生成各页面 HTML 文档。
+ * 从 doc/reference/<module>/registry.json 生成各页面 HTML 文档（Reference 象限）。
  * 运行：pnpm docs:pages
  */
 import fs from "node:fs"
@@ -7,7 +7,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..")
-const pagesRoot = path.join(root, "doc", "pages")
+const referenceRoot = path.join(root, "doc", "reference")
 
 function esc(s) {
   return String(s)
@@ -54,7 +54,7 @@ function renderPageDoc(module, modMeta, page) {
     </nav>
 
     <header class="hero">
-      <div class="eyebrow muted">${esc(modMeta.title)} · 页面契约</div>
+      <div class="eyebrow muted">${esc(modMeta.title)} · Reference · 页面契约</div>
       <h1>${esc(page.title)}</h1>
       <p class="lead">${esc(page.notes || "")}</p>
       ${statusTag(page.status)}
@@ -76,10 +76,6 @@ function renderPageDoc(module, modMeta, page) {
           </tbody>
         </table>
       </div>
-      <div class="callout callout--info">
-        <strong>小程序联调：</strong>在 <code>mfm-uniapp-vue3</code> 配置 <code>VITE_MFM_H5_ORIGIN</code> 指向本站点根（勿尾随 <code>/</code>）。
-        壳页通过 <code>property-rank-h5.ts</code> 的 <code>deployPath</code> 拼 <code>/v2/pages/…</code>。
-      </div>
     </section>
 
     <section class="content-panel">
@@ -87,7 +83,7 @@ function renderPageDoc(module, modMeta, page) {
       <ul>
         <li>路由真值：<code>src/config/rank-routes.ts</code></li>
         <li>模块索引：<a href="../${module}.html">${esc(modMeta.title)} 模块</a></li>
-        <li>架构：<a href="../../architecture.html">H5 架构说明</a></li>
+        <li>架构：<a href="../../explanation/c4-container.html">C4 Container · L2</a></li>
       </ul>
     </section>
   </div>
@@ -113,14 +109,14 @@ function renderModuleIndex(module, modMeta) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${esc(modMeta.title)} · mfm-h5</title>
+  <title>${esc(modMeta.title)} · mfm-h5 Reference</title>
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
   <div class="portal">
     <a class="back-home" href="../index.html">← 文档门户</a>
     <header class="hero">
-      <div class="eyebrow muted">页面模块</div>
+      <div class="eyebrow muted">Reference · 页面模块</div>
       <h1>${esc(modMeta.title)}</h1>
       <p class="lead">${esc(modMeta.description)}</p>
     </header>
@@ -138,20 +134,20 @@ function renderModuleIndex(module, modMeta) {
 `
 }
 
-const modules = fs.readdirSync(pagesRoot, { withFileTypes: true }).filter((d) => d.isDirectory())
+const modules = fs.readdirSync(referenceRoot, { withFileTypes: true }).filter((d) => d.isDirectory())
 
 for (const dirent of modules) {
   const module = dirent.name
-  const registryPath = path.join(pagesRoot, module, "registry.json")
+  const registryPath = path.join(referenceRoot, module, "registry.json")
   if (!fs.existsSync(registryPath)) continue
   const modMeta = JSON.parse(fs.readFileSync(registryPath, "utf8"))
-  const outDir = path.join(pagesRoot, module)
+  const outDir = path.join(referenceRoot, module)
   for (const page of modMeta.pages) {
     const out = path.join(outDir, `${page.id}.html`)
     fs.writeFileSync(out, renderPageDoc(module, modMeta, page))
     console.log("wrote", path.relative(root, out))
   }
-  const indexPath = path.join(pagesRoot, `${module}.html`)
+  const indexPath = path.join(referenceRoot, `${module}.html`)
   fs.writeFileSync(indexPath, renderModuleIndex(module, modMeta))
   console.log("wrote", path.relative(root, indexPath))
 }

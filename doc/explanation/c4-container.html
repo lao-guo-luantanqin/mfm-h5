@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>C4 Container · L2 · mfm-h5</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside id="doc-sidebar" class="side"></aside>
+      <main>
+        <a id="doc-back-home" class="back-home" href="../index.html">← 返回文档门户</a>
+        <nav id="doc-breadcrumb" class="breadcrumb"></nav>
+        <header class="hero">
+          <div class="eyebrow muted">核心 · C4 · 维护 2026-05-31</div>
+          <h1>C4 Container · L2</h1>
+          <p class="lead">独立 Vue 3 SPA（<code>/v2/</code>），由 uni-app web-view 加载；对外仅 REST 至 mfm-api。</p>
+          <div class="callout callout--info">
+            <strong>范围：</strong>
+            L1 见 <a href="../mfm-uniapp-vue3/doc/explanation/c4-workspace.html">C4 Workspace</a>；
+            L3 见 <a href="./explanation/c4-component.html">C4 Component</a>。
+          </div>
+        </header>
+
+        <section id="container" class="panel section-anchor">
+          <h2>Container（L2）· 运行时边界</h2>
+          <p class="section-lead">由 uni-app web-view 加载；对外仅 REST 至 mfm-api。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>方向</th><th>对象</th></tr></thead>
+              <tbody>
+                <tr><td>入站</td><td>uni-app 壳（<code>page_config.webviewSrc</code>）</td></tr>
+                <tr><td>出站</td><td>mfm-api（<code>src/api/*</code>）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
+flowchart TB
+  Shell["uni-app web-view 壳"]
+  subgraph h5["mfm-h5 SPA"]
+    Entry["/v2/pages/…"]
+    Router["Vue Router"]
+    Views["views/*"]
+    Entry --> Router --> Views
+  end
+  API["mfm-api REST"]
+  Shell --> Entry
+  Views --> API
+            </pre>
+          </div>
+        </section>
+
+        <section id="stack" class="panel section-anchor">
+          <h2>技术栈</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>层</th><th>选型</th></tr></thead>
+              <tbody>
+                <tr><td>框架</td><td>Vue 3 + TypeScript（无 uni-app 运行时）</td></tr>
+                <tr><td>构建</td><td>Vite · <code>base: '/v2/'</code></td></tr>
+                <tr><td>HTTP</td><td><code>utils/request.ts</code> 唯一客户端</td></tr>
+                <tr><td>桥接</td><td><code>uni.webview.1.5.4.js</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+    <script src="../assets/common.js"></script>
+    <script>DocShell.init({ pageId: "c4-container", title: "C4 Container · L2" })</script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
+      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" })
+    </script>
+  </body>
+</html>

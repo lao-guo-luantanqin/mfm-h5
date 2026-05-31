@@ -8,14 +8,14 @@
 
 ```bash
 pnpm install
-cp .env.example .env.development.local   # 或 .env
-pnpm dev:h5       # 默认 http://127.0.0.1:5180
-pnpm build:h5     # dist/，base /v2/
+cp .env.example .env.development.local # 或 .env
+pnpm dev:h5 # 默认 http://127.0.0.1:5180
+pnpm build:h5 # dist/，base /v2/
 pnpm preview:h5
-pnpm docs:pages   # 从 registry 生成 doc/pages/*/*.html
+pnpm docs:pages # 从 reference/<module>/registry.json 生成 doc/reference/*
 ```
 
-小程序联调：`web-view` URL 由 mfm-api **`page_config.props.webviewSrc`** 下发；本地 API `.env` 设 `MFM_API_H5_PUBLIC_ORIGIN=http://<局域网IP>:5180`，seed 后重启 API。详见 **`doc/architecture.html`**。
+小程序联调：`web-view` URL 由 mfm-api **`page_config.props.webviewSrc`** 下发；本地 API `.env` 设 `MFM_API_H5_PUBLIC_ORIGIN=http://<局域网IP>:5180`，seed 后重启 API。详见 **`doc/explanation/c4-container.html`**。
 
 ## §1 架构概览
 
@@ -24,7 +24,7 @@ pnpm docs:pages   # 从 registry 生成 doc/pages/*/*.html
 | **壳**（uni-app） | `base-h5-webview-page` + `page-key`；入口 URL 真值在 **`page_config.webviewSrc`** |
 | **页**（本仓） | Vue 3 + Vue Router + Vite SPA；站内 `router.push`；部署 `dist/` 即可 |
 
-业务 API 由页面 `import api/*` 请求 mfm-api；类型 **`src/types/`** 与后端 JSON 对齐，**不做** api 层字段映射。两层边界与联调流程见 **`doc/architecture.html`**。
+业务 API 由页面 `import api/*` 请求 mfm-api；类型 **`src/types/`** 与后端 JSON 对齐，**不做** api 层字段映射。两层边界与联调流程见 **`doc/explanation/c4-container.html`**。
 
 ## §2 目录结构
 
@@ -38,12 +38,12 @@ src/
 ├── utils/         request.ts（唯一 HTTP 客户端）
 └── router/
 
-doc/               HTML 真值；门户 doc/index.html
+doc/               Diátaxis 四象限 HTML；门户 doc/index.html
 scripts/           gen-page-docs.mjs
 vite.config.ts     base: /v2/
 ```
 
-新模块：增 `src/config/<module>-routes.ts` · `src/views/` · `doc/pages/<module>/registry.json`，运行 `pnpm docs:pages`。
+新模块：增 `src/config/<module>-routes.ts` · `src/views/` · `doc/reference/<module>/registry.json`，运行 `pnpm docs:pages`。
 
 ## §3 关键约定
 
@@ -51,15 +51,18 @@ vite.config.ts     base: /v2/
 2. **小程序桥**：`uni.webview.1.5.4.js`；返回优先 `uni.navigateBack()`。
 3. **路由表**（如 `rank-routes.ts`）仅做 Vue Router 注册，**不是**运营配置源；小程序只认 `webviewSrc`。
 4. **技术栈**：纯 Vue SPA，**不**引入 uni-app / uView 运行时。
-5. **文档分层**：短规则在本文；模块契约见 **`doc/pages/<module>/`**，门户 **`doc/index.html`**。
+5. **文档分层**：短规则在本文；页面契约见 **`doc/reference/<module>/`**，门户 **`doc/index.html`**。
 
-## §4 文档地图
+## §4 文档地图（Diátaxis）
 
-| 主题 | 文件 |
-|------|------|
-| 文档门户 | `doc/index.html` |
-| 架构与部署 | `doc/architecture.html` |
-| 榜单模块契约 | `doc/pages/rank.html` · `doc/pages/rank/*.html` |
+| 象限 | 门户 | 要点 |
+|------|------|------|
+| **Tutorial** | `doc/tutorial/index.html` | 入门：`getting-started.html` |
+| **How-to** | `doc/how-to/index.html` | `pnpm docs:pages`、构建 |
+| **Reference** | `doc/reference/index.html` | 榜单等页面契约 `reference/rank/` |
+| **Explanation** | `doc/explanation/index.html` | C4 L2/L3 |
+
+| C4 L1 多仓地图 | `../mfm-uniapp-vue3/doc/explanation/c4-workspace.html` |
 
 ## §5 不要做的事
 

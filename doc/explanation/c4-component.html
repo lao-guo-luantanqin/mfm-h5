@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>C4 Component · L3 · mfm-h5</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside id="doc-sidebar" class="side"></aside>
+      <main>
+        <a id="doc-back-home" class="back-home" href="../index.html">← 返回文档门户</a>
+        <nav id="doc-breadcrumb" class="breadcrumb"></nav>
+        <header class="hero">
+          <div class="eyebrow muted">核心 · C4 · 维护 2026-05-31</div>
+          <h1>C4 Component · L3</h1>
+          <p class="lead">SPA 内 views / api / router 目录职责。</p>
+          <div class="callout callout--info">
+            <strong>范围：</strong>
+            L2 边界见 <a href="./c4-container.html">C4 Container</a>；
+            L1 见 <a href="../mfm-uniapp-vue3/doc/explanation/c4-workspace.html">C4 Workspace</a>。
+          </div>
+        </header>
+
+        <section id="component" class="panel section-anchor">
+          <h2>Component（L3）· 目录与职责</h2>
+          <div class="diagram">
+            <pre class="mermaid">
+flowchart TB
+  Views["views/"]
+  Components["components/"]
+  Api["api/"]
+  Types["types/"]
+  Config["config/*-routes.ts"]
+  Router["router/"]
+  Views --> Components
+  Views --> Api
+  Api --> Types
+  Router --> Views
+  Config --> Router
+            </pre>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>目录</th><th>职责</th><th>不应做</th></tr></thead>
+              <tbody>
+                <tr><td><code>src/views/</code></td><td>页面 SFC</td><td>硬编码 webviewSrc</td></tr>
+                <tr><td><code>src/api/</code></td><td>HTTP 路径 + apiGet</td><td>响应字段映射</td></tr>
+                <tr><td><code>src/types/</code></td><td>与 mfm-api JSON 对齐</td><td>—</td></tr>
+                <tr><td><code>src/config/</code></td><td>路由注册表</td><td>替代 page_config 运营真值</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="related" class="panel section-anchor">
+          <h2>延伸阅读</h2>
+          <ul>
+            <li><code>doc/reference/&lt;module&gt;/</code> — 模块契约（<code>pnpm docs:pages</code>）</li>
+            <li>壳 URL 真值：mfm-api <code>page_config.webviewSrc</code></li>
+            <li>目录真值：<code>AGENTS.md</code> §2</li>
+          </ul>
+        </section>
+
+      </main>
+    </div>
+    <script src="../assets/common.js"></script>
+    <script>DocShell.init({ pageId: "c4-component", title: "C4 Component · L3" })</script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
+      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" })
+    </script>
+  </body>
+</html>

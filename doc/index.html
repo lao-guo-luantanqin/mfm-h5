@@ -9,56 +9,40 @@
   <body>
     <div class="portal">
       <header class="hero">
-        <div class="eyebrow muted">doc · 独立 H5 · 2026-05-26</div>
+        <div class="eyebrow muted">doc · Diátaxis · 2026-05-31</div>
         <h1>mfm-h5 · 文档套件</h1>
-        <p class="lead">
-          与 <code>mfm-uniapp-vue3</code> 分仓部署的 H5 站点。页面按模块扩展；运行时入口 <code>AGENTS.md</code>，契约真值见各
-          <code>doc/pages/&lt;module&gt;/&lt;id&gt;.html</code>。
-        </p>
+        <p class="lead">严格按 <strong>Diátaxis 四象限</strong> 组织。入口 <code>AGENTS.md</code> · 门户 <strong>本页</strong>。</p>
         <div class="callout callout--info">
-          <strong>URL 形态：</strong><code>{origin}/v2/pages/&lt;deployPath&gt;</code>，与房小团 FXT 对齐。小程序仅
-          <code>web-view</code> 壳，配置 <code>VITE_MFM_H5_ORIGIN</code>。
+          <strong>四象限：</strong><code>tutorial/</code> · <code>how-to/</code> · <code>reference/</code>（含页面契约 <code>reference/rank/</code>）· <code>explanation/</code>
         </div>
-        <div class="callout callout--ok">
-          <strong>技术栈：</strong>Vue 3 + Vue Router + Vite（非 uni-app 运行时）。<code>index.html</code> 含
-          <code>uni.webview.1.5.4.js</code>。
+        <div class="filter-tags">
+          <button type="button" class="filter-tag is-active" data-filter="all">全部</button>
+          <button type="button" class="filter-tag" data-filter="tutorial">Tutorial</button>
+          <button type="button" class="filter-tag" data-filter="how-to">How-to</button>
+          <button type="button" class="filter-tag" data-filter="reference">Reference</button>
+          <button type="button" class="filter-tag" data-filter="explanation">Explanation</button>
         </div>
       </header>
-
-      <h2>页面模块</h2>
+      <h2>Tutorial</h2>
       <div class="grid">
-        <article class="card">
-          <span class="tag tag--ok">rank</span>
-          <h3><a href="./pages/rank.html">房产榜单</a></h3>
-          <p>榜单中心、网签榜、楼盘榜等 10 页；已生成单页 HTML 契约。</p>
-          <p><a href="./pages/rank.html">模块索引 →</a></p>
-        </article>
+        <article class="card" data-doc-card data-tag="tutorial"><h3><a href="./tutorial/getting-started.html">入门教程</a></h3><p>pnpm install → dev:h5 → 读契约 → 联调 web-view。</p></article>
       </div>
-
-      <h2>核心文档</h2>
+      <h2>How-to</h2>
       <div class="grid">
-        <article class="card">
-          <h3><a href="./architecture.html">架构与部署</a></h3>
-          <p>与小程序/后端边界、Nginx base、环境变量、联调步骤。</p>
-        </article>
-        <article class="card">
-          <h3><a href="../AGENTS.md">AGENTS.md</a></h3>
-          <p>Agent 协作入口（Markdown，仓库根目录）。</p>
-        </article>
+        <article class="card" data-doc-card data-tag="how-to"><h3><a href="./how-to/index.html">How-to · 门户</a></h3><p>生成页面文档：<code>pnpm docs:pages</code>。</p></article>
       </div>
-
-      <details id="doc-structure">
-        <summary>文档结构（Harness）</summary>
-        <div class="details-body">
-          <p>本仓 <code>doc/pages/&lt;module&gt;/</code> 为 <code>pnpm docs:pages</code> 生成的单页契约；壳 URL 真值在 mfm-api <code>page_config.webviewSrc</code>。</p>
-          <pre><code>doc/
-├── index.html · architecture.html
-├── pages/rank.html · pages/rank/*.html
-└── assets/</code></pre>
-        </div>
-      </details>
-
-      <p class="muted">生成单页文档：<code>pnpm docs:pages</code>（读取 <code>doc/pages/*/registry.json</code>）。</p>
+      <h2>Reference</h2>
+      <div class="grid">
+        <article class="card" data-doc-card data-tag="reference"><h3><a href="./reference/rank.html">房产榜单模块</a></h3><p>10 页 deployPath / API 契约表。</p></article>
+      </div>
+      <h2>Explanation</h2>
+      <div class="grid">
+        <article class="card" data-doc-card data-tag="explanation"><h3><a href="../mfm-uniapp-vue3/doc/explanation/c4-workspace.html">C4 Workspace · L1</a></h3></article>
+        <article class="card" data-doc-card data-tag="explanation"><h3><a href="./explanation/c4-container.html">C4 Container · L2</a></h3></article>
+        <article class="card" data-doc-card data-tag="explanation"><h3><a href="./explanation/c4-component.html">C4 Component · L3</a></h3></article>
+      </div>
     </div>
+    <script src="./assets/common.js"></script>
+    <script>DocShell.init({ portal: true })</script>
   </body>
 </html>

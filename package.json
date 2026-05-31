@@ -11,7 +11,8 @@
     "build:h5": "vue-tsc -b && vite build",
     "preview": "pnpm preview:h5",
     "preview:h5": "vite preview",
-    "docs:pages": "node scripts/gen-page-docs.mjs"
+    "docs:pages": "node scripts/gen-page-docs.mjs",
+    "verify:harness": "node scripts/verify-harness-docs.mjs"
   },
   "engines": {
     "node": ">=18"
