@@ -57,12 +57,13 @@ vite.config.ts     base: /v2/
 
 | 象限 | 门户 | 要点 |
 |------|------|------|
-| **Tutorial** | `doc/tutorial/index.html` | 入门：`getting-started.html` |
+| **Tutorial** | `doc/tutorial/index.html` | 入门：`tutorial-getting-started.html` |
 | **How-to** | `doc/how-to/index.html` | `pnpm docs:pages`、构建 |
 | **Reference** | `doc/reference/index.html` | 榜单等页面契约 `reference/rank/` |
 | **Explanation** | `doc/explanation/index.html` | C4 L2/L3 |
 
 | C4 L1 多仓地图 | `../mfm-uniapp-vue3/doc/explanation/c4-workspace.html` |
+| doc HTML 命名 | `../mfm-uniapp-vue3/doc/reference/doc-file-naming.html`（五仓统一 `{domain}-{topic}.html`） |
 
 ## §5 不要做的事
 

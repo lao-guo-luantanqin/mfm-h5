@@ -7,10 +7,10 @@
   var NAV = [
     { id: "index", href: "index.html", label: "文档门户", group: "入口" },
     { id: "tutorial-index", href: "tutorial/index.html", label: "Tutorial · 门户", group: "Tutorial" },
-    { id: "tutorial-getting-started", href: "tutorial/getting-started.html", label: "入门教程", group: "Tutorial" },
+    { id: "tutorial-getting-started", href: "tutorial/tutorial-getting-started.html", label: "入门教程", group: "Tutorial" },
     { id: "how-to-index", href: "how-to/index.html", label: "How-to · 门户", group: "How-to" },
     { id: "reference-index", href: "reference/index.html", label: "Reference · 门户", group: "Reference" },
-    { id: "rank-module", href: "reference/rank.html", label: "房产榜单模块", group: "Reference" },
+    { id: "rank-module", href: "reference/rank-module.html", label: "房产榜单模块", group: "Reference" },
     { id: "explanation-index", href: "explanation/index.html", label: "Explanation · 门户", group: "Explanation" },
     { id: "c4-workspace", href: C4_WORKSPACE, label: "C4 Workspace · L1", group: "Explanation" },
     { id: "c4-container", href: "explanation/c4-container.html", label: "C4 Container · L2", group: "Explanation" },
