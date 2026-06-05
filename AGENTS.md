@@ -65,6 +65,25 @@ vite.config.ts     base: /v2/
 | C4 L1 多仓地图 | `../mfm-uniapp-vue3/doc/explanation/c4-workspace.html` |
 | doc HTML 命名 | `../mfm-uniapp-vue3/doc/reference/doc-file-naming.html`（五仓统一 `{domain}-{topic}.html`） |
 
+Harness 校对：`pnpm verify:harness` · 公共样式：`doc/assets/style.css` · `doc/assets/common.js`
+
+**用户级技能**（`~/.agents/skills/`）：通用流程与 `git-close-loop` · `html-artifacts` 等；本仓无 `.agents/skills/`。
+
+## §6 Git 闭环与文档影响面
+
+流程技能：**`git-close-loop`**（用户级 `~/.agents/skills/`）。提交前对照下表维护文档与跨仓契约。
+
+| 代码/配置变更 | 优先更新的入口 |
+|---------------|----------------|
+| 公开路径 / 路由 | `src/config/*-routes.ts` · `pnpm docs:pages` → `doc/reference/<module>/` |
+| 页面契约 | `doc/reference/<module>/registry.json` 与生成 HTML |
+| C4 · 壳页联调 | `doc/explanation/c4-container.html`；同步 mfm-api **`page_config.webviewSrc`** |
+| C4 L1 | `../mfm-uniapp-vue3/doc/explanation/c4-workspace.html` |
+| 仅局部实现、无路径/契约变化 | 提交说明注明「文档：无」 |
+
+- 动 `doc/` 或 `registry.json`：`pnpm verify:harness`；合并前 `pnpm build:h5`
+- 闭环收尾：`git pull --rebase` → `git push`
+
 ## §5 不要做的事
 
 - 在 uni-app 壳页写死 H5 完整 URL（须 `page-key` + `page_config`）。
